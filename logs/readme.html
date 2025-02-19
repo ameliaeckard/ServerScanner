@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sever Scan: Vibing I Guess</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h3 {
+            color: #16a085;
+        }
+        .note {
+            background-color: #ffeb3b;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Server Scan: Vibing I Guess</h1>
+
+    <div class="section">
+        <h2>Quick Analysis</h2>
+        <h3>Overview</h3>
+        <p>The file contains logs of concerning messages detected in a Discord server. Each log includes:</p>
+        <ul>
+            <li>Username & ID 👤</li>
+            <li>Timestamp 📅</li>
+            <li>Channel 📌</li>
+            <li>Reason for detection 📍 (e.g., keyword detection, negative sentiment)</li>
+            <li>Message Context 💬</li>
+        </ul>
+
+        <h3>Key Observations</h3>
+        <ul>
+            <li><strong>Types of Messages Logged:</strong> Keyword-based detections ⚠️ and Negative sentiment detections 😞.</li>
+            <li><strong>Frequent Users in the Logs:</strong> Users like *avzure.*, *midonlynx*, and *fallofthenight* appear multiple times.</li>
+            <li><strong>Common Themes:</strong> Aggressive language, personal struggles, frustration with life events, dark humor, etc.</li>
+            <li><strong>Possible Actions:</strong> Moderation, filtering, and intervention based on severity.</li>
+        </ul>
+    </div>
+
+
+    <div class="section">
+        <h2>Discord Message Logger Bot</h2>
+        <h3>Overview</h3>
+        <p>This bot logs user activity and chat messages in a Discord server. It detects and flags concerning messages based on keyword detection and sentiment analysis.</p>
+
+        <h3>Features</h3>
+        <ul>
+            <li>Logs usernames, user IDs, and account ages.</li>
+            <li>Tracks and records chat messages.</li>
+            <li>Detects concerning messages based on a predefined keyword list and sentiment analysis.</li>
+            <li>Logs flagged messages with context for review.</li>
+        </ul>
+
+        <h3>Usage</h3>
+        <p>Simply add the bot to your Discord server, and it will start monitoring messages.</p>
+
+        <h3>Logs Format</h3>
+        <pre>
+⚠️ Concerning Message Detected ⚠️
+👤 User: [username]
+📅 Time: [timestamp]
+📌 Channel: [channel]
+📍 Reason: [reason]
+🔽 Context:
+     💬 user: previous message
+————————————————————————————————————————
+        </pre>
+
+        <h3>Installation & Setup</h3>
+        <ul>
+            <li>Clone the repository.</li>
+            <li>Install dependencies: <code>pip install -r requirements.txt</code></li>
+            <li>Run the bot and let it log messages in your server.</li>
+        </ul>
+
+        <div class="note">
+            The bot only logs user messages and ignores bot messages. You can modify the concerning words list in <code>database/concerningwords.txt</code>.
+        </div>
+    </div>
+
+</body>
+</html>
