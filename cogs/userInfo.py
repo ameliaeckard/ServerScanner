@@ -13,19 +13,14 @@ class userInfo(commands.Cog, name="userinfo"):
     async def fetch_all_users(self):
         """Fetches all users from all guilds by going through message history."""
         all_users = set()
-
-        # Loop through all guilds the bot is in
         for guild in self.bot.guilds:
-            # Loop through all text channels in the guild
             for channel in guild.text_channels:
                 try:
-                    # Fetch past messages (set a high limit, e.g., 1000 messages per channel)
-                    async for message in channel.history(limit=1000):  
+                    async for message in channel.history(limit=None):  
                         if message.author not in all_users:
                             all_users.add(message.author)
 
                 except discord.errors.Forbidden:
-                    # If the bot doesn't have permission to read the message history, ignore it
                     print(f"⚠️ No permission to read history in {channel.name}.")
 
         return all_users
