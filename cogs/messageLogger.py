@@ -5,11 +5,9 @@ import re
 from discord.ext import commands
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
-# Define log directory
 LOG_DIR = "logs"
 os.makedirs(LOG_DIR, exist_ok=True)
 
-# Load concerning words function
 def load_concerning_keywords():
     keywords = set()
     try:
@@ -21,7 +19,6 @@ def load_concerning_keywords():
         print(f"⚠️ Error loading concerning words: {e}")
     return keywords
 
-# Clean function to remove special characters and make everything lowercase
 def clean_text(text):
     return re.sub(r'[^a-zA-Z0-9\s]', '', text).lower()
 
@@ -55,11 +52,9 @@ class MessageLogger(commands.Cog, name="MessageLogger"):
         content = clean_text(message.content)
         words = set(content.split())
 
-        # Check for exact whole-word match in concerning keywords
         if any(keyword in words for keyword in self.concerning_keywords):
             await self.log_concerning_message(message, "Keyword detected")
 
-        # Check sentiment for strong negative tone
         sentiment_score = self.analyzer.polarity_scores(message.content)
         if sentiment_score['compound'] <= -0.7:
             await self.log_concerning_message(message, "Negative sentiment detected")
@@ -74,7 +69,6 @@ class MessageLogger(commands.Cog, name="MessageLogger"):
             log_file.write(f"📍 Reason: {reason}\n")
             log_file.write("🔽 Context:\n")
 
-            # Retrieve context messages (before & after)
             if message.channel.id in self.message_cache:
                 context_messages = self.message_cache[message.channel.id]
                 prev_msg = next((msg for msg in reversed(context_messages) if msg.id != message.id), None)
