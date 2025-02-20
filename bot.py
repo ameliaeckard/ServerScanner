@@ -7,18 +7,15 @@ import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 
-# Load configuration
 if not os.path.isfile("config.json"):
     sys.exit("❌ 'config.json' not found! Please add it and try again.")
 else:
     with open("config.json") as file:
         config = json.load(file)
 
-# Set up bot intents
 intents = discord.Intents.default()
 intents.message_content = True
 
-# Set up logging
 logger = logging.getLogger("discord_bot")
 logger.setLevel(logging.INFO)
 handler = logging.StreamHandler(sys.stdout)
@@ -28,7 +25,7 @@ logger.addHandler(handler)
 
 class DiscordBot(commands.Bot):
     def __init__(self):
-        super().__init__(command_prefix=commands.when_mentioned_or(config["prefix"]), intents=intents)
+        super().__init__(intents=intents)
         self.logger = logger
         self.config = config
         self.logged_users = set()
@@ -70,10 +67,10 @@ class DiscordBot(commands.Bot):
         """Fetches old user messages and logs them."""
         self.logger.info("🔄 Fetching past users from message history...")
 
-        for guild in self.guilds:  # Loop through all servers the bot is in
-            for channel in guild.text_channels:  # Loop through all text channels
+        for guild in self.guilds:
+            for channel in guild.text_channels:
                 try:
-                    async for message in channel.history(limit=1000):  # Adjust limit if needed
+                    async for message in channel.history(limit=1000):
                         if not message.author.bot:
                             user_data = (message.author.id, message.author.name, message.author.created_at)
                             if user_data not in self.logged_users:
@@ -84,10 +81,8 @@ class DiscordBot(commands.Bot):
 
     async def on_ready(self):
         self.logger.info(f"✅ Logged in as {self.user.name}")
-        await self.fetch_past_users()  # Fetch old messages
+        await self.fetch_past_users()
 
-
-# Load environment variables and run the bot
 load_dotenv()
 bot = DiscordBot()
 bot.run(os.getenv("TOKEN"))
