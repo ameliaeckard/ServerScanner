@@ -27,12 +27,13 @@ Simply add the bot to your Discord server, and it will start monitoring messages
 
 ## Installation & Setup
 1. Clone the repository.
-2. Install dependencies using `pip install -r requirements.txt`.
-3. Run the bot and let it log messages in your server.
+2. Open terminal.
+3. Navigate to the serverscanner directory using cd serverscanner.
+4. Install dependencies using pip install -r requirements.txt.
+5. Run the bot by executing python bot.py.
 
 ## Notes
 - The bot will only log messages from users and ignore bot messages.
 - The concerning words list can be modified in `database/concerningwords.txt`.
 
 Happy monitoring! 🚀
-
